@@ -7,6 +7,7 @@
 
 ## AI
 Goals
+- detect surfaces
 - identify inputs
 - identify types of actions
     - types
@@ -53,6 +54,9 @@ Actions
 36 = backward--------------|
 ```
 action = sum of choices
+
+
+detect similar colors, look for shapes in groupings
 
 
 ## Human Comparison

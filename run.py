@@ -19,18 +19,24 @@ def run_episode(env):
     done = False
     episode_reward = 0.0
     
+    obs, reward, done, info = env.step(18)
+    count = 0;
     while not done:
         # pick random options
         #fbChoice = random.choice(fb)
         #lrChoice = random.choice(lr)
-        directionChoice = 18 #always forward # random.choice(direction) # combination of the two above
-        jChoice = 0 # random.choice(j)
-        cChoice = random.choice(c)
-
-        action = directionChoice + jChoice + cChoice
-
-        obs, reward, done, info = env.step(action)
-        episode_reward += reward
+        # directionChoice = 18 # random.choice(direction) # combination of the two above
+        # jChoice = 0 # random.choice(j)
+        # cChoice = random.choice(c)
+        # action = directionChoice + jChoice + cChoice
+        for i in range(0,25):
+            action = 18
+            obs, reward, done, info = env.step(action)
+            episode_reward += reward
+        for i in range(0, 8):
+            action = 6
+            obs, reward, done, info = env.step(action)
+            episode_reward += reward
         
     return episode_reward
 
@@ -45,7 +51,7 @@ if __name__ == '__main__':
     parser.add_argument('--docker_training', action='store_true')
     parser.set_defaults(docker_training=False)
     args = parser.parse_args()
-    env = ObstacleTowerEnv(args.environment_filename, docker_training=args.docker_training, realtime_mode=True)
+    env = ObstacleTowerEnv(args.environment_filename, docker_training=args.docker_training, realtime_mode=False)
     if env.is_grading():
         episode_reward = run_evaluation(env)
     else:
