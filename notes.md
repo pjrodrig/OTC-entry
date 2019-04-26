@@ -1,8 +1,27 @@
+## Challenge resources
+- [blog](https://blogs.unity3d.com/2019/01/28/obstacle-tower-challenge-test-the-limits-of-intelligence-systems/)
+- [info](https://www.aicrowd.com/challenges/unity-obstacle-tower-challenge)
+- [challenge repo](https://github.com/Unity-Technologies/obstacle-tower-challenge)
+- [paper](https://storage.googleapis.com/obstacle-tower-build/Obstacle_Tower_Paper_Final.pdf)
+- [env repo](https://github.com/Unity-Technologies/obstacle-tower-env)
+- [rules](https://gitlab.aicrowd.com/unity/obstacle-tower-challenge-resources/blob/master/Rules.md?_ga=2.166169982.1364833215.1555537393-735101082.1555262287) 
+- [leaderboard](https://www.aicrowd.com/challenges/unity-obstacle-tower-challenge/leaderboards)
+- [submission]()
+
 ## Research
 - Neural networks
+    - https://www.3blue1brown.com/videos
+- stochastic gradient descent
+    - https://github.com/mnielsen/neural-networks-and-deep-learning
+    - https://en.wikipedia.org/wiki/Stochastic_gradient_descent
+- assigning initial values
+    - gaussian distribution
 - Deep learning
-- Merging Neural Networks
-
+- Dynamically expandable neural networks
+    - https://hackernoon.com/dynamically-expandable-neural-networks-ce75ff2b69cf
+- Backpropagation
+    - http://colah.github.io/posts/2015-08-Backprop/
+- semantic segmentation
 
 
 ## AI
@@ -42,6 +61,15 @@ Goals
     - mapped room -- traversible terrain
 
 
+
+slice tower into more easily solved problems
+
+  the horizontal movement problem can be converted into a top down arcade like game where we must move a model around a 2d environment. Impassible terrain must be identified to draw a map of the 2d environment. gaps that must be jumped across should be represented in such a way that we allow our bot to traverse over gaps that are jumpable
+
+  to solve the vertical movement / jump problem, we must identify linear paths from the horizontal movement problem and display them as a side scrolling platformer
+
+
+
 Actions
 ```
 0 = none----------|--|--|--|
@@ -57,6 +85,7 @@ action = sum of choices
 
 
 detect similar colors, look for shapes in groupings
+
 
 
 ## Human Comparison
@@ -85,3 +114,21 @@ detect similar colors, look for shapes in groupings
 - Has anything changed?
 - Has progress been made?
 - Will choosing the action have an effect? (can take action, ex. jumping while in the air, going forward against a wall)
+- what type of room is the ai in
+- what state is the ai in? does it have a key? 
+
+
+## Tower Notes
+
+Types of nodes:
+- Start (S): is the starting node in the dungeon.
+- Exit (E): is the end node in the dungeon that the player
+need to reach.
+- Key (K): is a node that contains a key.
+- Lock (L): is a node that can’t be entered without a key.
+- Puzzle (P): is a node that contain a puzzle/challenge that
+need to be passed to continue.
+- Lever (V): is a node that contains a lever that need to be
+pressed to pass to the next room.
+- Normal (N): any other node that doesn’t follow any of the
+above.

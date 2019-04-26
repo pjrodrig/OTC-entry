@@ -2,3 +2,6 @@ UnitySDK.log
 __pycache__
 .DS_STORE
 /ObstacleTower
+/data
+/img
+/t_logs

@@ -40,8 +40,6 @@ if __name__ == '__main__':
         else:
             paths.append(line.split(' '))
 
-    print('paths', paths)
-    print(seed_paths_arr)
     for i in range(0, 101):
         #get paths for this seed
         if len(seed_paths_arr) > i:
@@ -58,7 +56,6 @@ if __name__ == '__main__':
         reward = 0
         actions = []
         rerun_actions = False
-        print("starting here")
         while reward < 1:
             if(i_path < len(seed_paths)):
                 while i_path < len(seed_paths):
