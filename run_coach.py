@@ -56,17 +56,22 @@ if __name__ == '__main__':
         reward = 0
         actions = []
         rerun_actions = False
-        while reward < 1:
+        reward_total = 0
+        while reward_total < 2:
+            reward = 0
             if(i_path < len(seed_paths)):
-                while i_path < len(seed_paths):
+                reward_before = reward_total
+                while i_path < len(seed_paths) and reward_total < reward_before + 1:
                     current_path = paths[int(seed_paths[int(i_path)])]
-                    while path_i < len(current_path):
+                    while path_i < len(current_path) and reward_total < reward_before + 1:
                         current_action = int(current_path[path_i])
-                        obs, step_reward, done, info = env.step(current_action)
-                        reward += step_reward
+                        obs, reward, done, info = env.step(current_action)
+                        reward_total += reward
+                        print('loop reward', reward)
                         path_i += 1
                     i_path += 1
                     path_i = 0
+            print('before if reward', reward)
             if(reward == 0):
                 if rerun_actions:
                     for action in actions:
@@ -82,6 +87,7 @@ if __name__ == '__main__':
                         env.reset()
                         env.step(18)
                         actions = []
+                        reward_total = 0
                     elif action == "undo":
                         i_path = 0 #paths iterator
                         path_i = 0 #path iterator
@@ -89,6 +95,7 @@ if __name__ == '__main__':
                         env.reset()
                         env.step(18)
                         actions.pop()
+                        reward_total = 0
                         rerun_actions = True
                     elif action == "path":
                         for pi, path in enumerate(paths, start=0):
@@ -102,13 +109,15 @@ if __name__ == '__main__':
                             env.seed(i)
                             env.reset()
                             actions = []
+                            reward_total = 0
                     elif action == '' or action == '1' or action == '2':
                         if action == '':
                             action = '0'
                         action = action_options[int(action)]
                         actions.append(action)
                         obs, reward, done, info = env.step(action)
-                        print("reward", reward)
+                        reward_total += reward
+                        print("reward", reward_total)
         if(len(actions) > 0):
             seed_paths.append(len(paths))
             paths.append(actions)

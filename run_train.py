@@ -43,7 +43,7 @@ if __name__ == '__main__':
     #Train
 
     model = get_model()
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.8)
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate=3.0)
     checkpoint = tf.train.Checkpoint(optimizer=optimizer, model=model)
     checkpoint.restore(tf.train.latest_checkpoint('./tf_saves/'))
 
